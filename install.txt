@@ -1,0 +1,10 @@
+Download the latest version:
+  curl -s https://ftp.gnu.org/gnu/parallel/parallel-latest.tar.bz2 --output parallel-latest.tar.bz2
+Untar it: 
+  tar zxf parallel-latest.tar.bz2
+cd parallel-<tab>
+./configure --prefix=$HOME/parallel-install  # or any other place
+make install      # requires libevent
+export PATH=$HOME/parallel-install/bin:$PATH
+which parallel # this should return the above path
+
