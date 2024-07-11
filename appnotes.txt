@@ -1,0 +1,15 @@
+HMMER3 Takes a protein sequence and compares it to a probabilistic profile that describes a protein domain. It reports when there is a statistically significant likelihood that the protein and the domain share the same evolutionary origin. This basic comparison is repeated for all combinations of many protein sequences and many domains.
+
+Download the hmmsearch package here: http://hmmer.org/download.html
+Download the protein HMM searchable library here: https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.dat.gz
+
+wget https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
+...
+...
+2023-08-08 15:30:30 (471 KB/s) - ‘uniprot_sprot.fasta.gz’ saved [91753753/91753753]
+
+warndt@perlmutter:login18:/pscratch/sd/w/warndt/data> gunzip uniprot_sprot.fasta.gz 
+
+warndt@perlmutter:login18:/pscratch/sd/w/warndt/data> awk -v chunksize=$(grep ">" uniprot_sprot.fasta -c) 'BEGIN{n=0; chunksize=int(chunksize/256)+1 } /^>/ {if(n%chunksize==0){file=sprintf("uniprot_%d.fasta",1+(n%256));} print >> file; n++; next;} { print >> file; }' < uniprot_sprot.fasta
+
+

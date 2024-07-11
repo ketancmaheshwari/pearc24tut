@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm p*/outdir/*.txt outputs/*.txt q.?? 2>/dev/null

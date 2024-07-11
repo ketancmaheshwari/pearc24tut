@@ -1,0 +1,11 @@
+tres_id,resource_type
+1,cpu
+2,mem
+3,energy
+4,node
+5,billing
+6,fs
+7,vmem
+8,pages
+1001,gpu:tesla
+1002,gpu:volta 

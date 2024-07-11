@@ -1,2 +1,3 @@
-# pearc24tut
-gnu parallel tutorial at pearc24
+# escience23tut
+
+Slides and other materials for the GNU Parallel Tutorial at eScience 2023.
