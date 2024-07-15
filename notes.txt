@@ -1,0 +1,111 @@
+=== GNU Parallel Tutorial Exercise ===
+
+Create a C program called prime.c as follows:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[]){
+
+   int flag_var, i, j;
+   int num1 = atoi(argv[1]);
+   int num2 = atoi(argv[2]);
+
+   for(i=num1+1; i<num2; ++i){
+      flag_var=0;
+      for(j=2; j<=i/2; ++j){
+         if(i%j==0){
+            flag_var=1;
+            break;
+         }
+      }
+      if(flag_var==0)
+         printf("%d\n",i);
+  }
+  return 0;
+}
+
+Compile it. Run the executable in parallel to find prime numbers between 1 and 1000 run 10 instances in parallel by providing argument pairs: 1 100, 101 200, ..., 901 1000
+Hint1: use the curly brace expression creatively to obtain the ranges
+Hint2: use --link flag of Parallel to ensure the provided arguments match 1-1 and a combination is not produced
+
+parallel -j10 --link ./prime ::: {1..1000..100} ::: {100..1000..100} 
+
+William Arndt Bio:
+William is a member of the Data Science Engagement Group at the National Energy Research Scientific Computing Center. He specializes in the support of large research institutions using NERSC resources, the application of workflow management tools in HPC environments, application optimization, and transparent checkpoint-restart tools. He obtained a PhD in Computer Science from the University of South Carolina in 2011.
+
+== Reviewer Comments ==
+SUBMISSION: 28
+TITLE: Scientific Workflows at Scale using GNU Parallel
+
+
+----------------------- REVIEW 1 ---------------------
+SUBMISSION: 28
+TITLE: Scientific Workflows at Scale using GNU Parallel
+AUTHORS: Ketan Maheshwari and Rafael Ferreira da Silva
+
+----------- Overall evaluation -----------
+SCORE: 3 (strong accept)
+----- TEXT:
+The tutorial "Scientific Workflows at Scale using GNU Parallel" is an instructional session aimed at harnessing the power of GNU Parallel for large-scale scientific computing. It will offer a blend of background knowledge, practical skills, and hands-on experience, targeted towards parallel computing across multicore and multinode architectures.
+
+The structure of the tutorial, spanning from basic to advanced use cases, is well-designed to cater to a broad audience, from beginners to more experienced users familiar with Linux and command-line operations. The focus on integrating GNU Parallel with HPC job schedulers like SLURM, LSF, and PBS/Torque is particularly relevant, acknowledging the shared resource environment typical of research computing centers. Moreover, the tutorial promises to equip participants with the skills to construct fully asynchronous, parallel multi-stage scientific workflows, a capability crucial for maximizing the efficiency of computing resources and accelerating scientific discovery.
+
+However, it could benefit from incorporating more diverse, real-world scientific use cases to further enhance this tutorial. Demonstrating GNU Parallel's application in varied scientific domains could help attendees better visualize its potential impact on their specific research challenges. Additionally, fostering a more interactive session with Q&A segments or panel discussions could enhance learner engagement and provide deeper insights into solving complex workflow problems.
+
+The presenters should think about modalities to provide extended online access to the materials, have online Q&A sessions, and build online communities using forum platforms for interactions after the tutorial.
+
+
+----------------------- REVIEW 2 ---------------------
+SUBMISSION: 28
+TITLE: Scientific Workflows at Scale using GNU Parallel
+AUTHORS: Ketan Maheshwari and Rafael Ferreira da Silva
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+Tutorial proposal 28
+"Scientific Workflows at Scale using GNU Parallel"
+
+Reviewer recommendation:  maybe
+
+Overview:
+
+The authors propose a half day tutorial about how to use GNU parallel for scientific workflows on high performance computing clusters.
+
+What worked well:
+
+The proposal makes clear how a simple and flexible tool like parallel can be useful in developing scientific workflows and for ad-hoc tasks on compute clusters.
+
+What needs improvement:
+
+The tutorial does not discuss how parallel relates to other distributed computing approaches such as DASK or SPARK -- when if ever is it more appropriate to use DASK instead of parallel?  What other approaches are available?
+
+The tutorial outline does not explain what use cases or exercises will be covered, except for entry 15.
+
+Please briefly indicate how the exercises will illustrate the features of parallel.
+
+For example do you intend to provide an example exercise that demonstrates the use of checkpointing?  What example do you have in mind?
+
+It would be useful to provide a link to slide decks for previous similar presentations, if they are available.
+
+Minor corrections:
+
+On page 2 "compied" should be "copied".
+
+----------------------- REVIEW 3 ---------------------
+SUBMISSION: 28
+TITLE: Scientific Workflows at Scale using GNU Parallel
+AUTHORS: Ketan Maheshwari and Rafael Ferreira da Silva
+
+----------- Overall evaluation -----------
+SCORE: -1 (weak reject)
+----- TEXT:
+The proposed tutorial entitled “Scientific Workflows at Scale using GNU Parallel” is focused on the GNU Parallel’s ability to execute commands in parallel and its compatibility with HPC job schedulers like SLURM, LSF, PBS/Torque. The use of this tool allows:
+-       Rapid Prototyping, empowering users to quickly prototype the parallelism in complex workflows, which can be beneficial for large-scale runs.
+-       Portability & Flexibility: GNU Parallel is praised as a single program, making it highly portable and flexible with over 100 options and flags.
+However, there are some weak features in the tutorial proposal, which reduces the value of the proposed tutorial:
+-       Short Duration: The tutorial is only three hours long, which may not be sufficient to cover all the technical details and use cases of GNU Parallel.
+        Lack of Expert Target Audience: The intended audience includes scientists, engineers, researchers, and students but does not specifically target experts in the field, potentially preventing advanced discussions.
+        No Hands-on Session: There is no mention of a hands-on session for attendees to implement their own applications, which could limit the tool's practical understanding and application.
+Overall, the proposal showcases GNU Parallel’s potential in scientific computing but may benefit from a more extended format and inclusion of hands-on exercises for advanced users. In conclusion, the proposed tutorial cannot be recommended for acceptance in its present form.
+
